@@ -1,0 +1,30 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+        <ion-button class="login-button" expand="full" slot="end" [routerLink]="['/login']">
+          {{ username }}
+        </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="main-content">
+    <ion-label class="custom-label">Bienvenido, {{ username }}</ion-label>
+  </ion-content>
+</ion-app>
+
+<ion-menu side="end" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item [routerLink]="['/passreset']">
+        Restablecer Contraseña
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
