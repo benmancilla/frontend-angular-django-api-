@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -41,6 +42,6 @@ export class LoginPage {
   }
 
   goToPasswordReset() {
-    this.router.navigate(['/password-reset']);
+    this.router.navigate(['/passreset']);
   }
 }
