@@ -18,7 +18,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },  {
+    path: 'comida-order',
+    loadChildren: () => import('./comida-order/comida-order.module').then( m => m.ComidaOrderPageModule)
   }
+
 ];
 
 @NgModule({

@@ -1,96 +1,96 @@
+
 <ion-app>
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-        <ion-button class="login-button" expand="full" slot="end" [routerLink]="['/login']">
-          {{ username }}
-        </ion-button>
+      <ion-button class="login-button" expand="full" slot="end" [routerLink]="['/login']">
+        {{ username }}
+      </ion-button>
     </ion-toolbar>
   </ion-header>
+
+  <ion-menu side="end" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item [routerLink]="['/passreset']">
+          Restablecer Contraseña
+        </ion-item>
+        <ion-item [routerLink]="['/comida-order']">
+          Realizar Orden 
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
   <ion-content id="main-content">
-    <ion-label class="custom-label">Bienvenido, {{ username }}</ion-label>
+    <!-- Barra de búsqueda -->
+    <div style="margin: 10px;">
+      <ion-searchbar placeholder="Busque un plato"></ion-searchbar>
+    </div>
+
+    <ion-card style="margin: 20px;">
+      <h1 style="margin: 10px;">Almuerzos disponibles</h1>
+    </ion-card>
+
+    <!-- Rejilla de cartas -->
+    <ion-grid>
+      <ion-row>
+        <!-- Primera Card -->
+        <ion-col size="12" size-md="4">
+          <ion-card>
+            <img src="./assets/images/OIP.jfif" alt="Lasaña tradicional" style="width: 100%; height: auto;">
+            <ion-card-header>
+              <ion-card-title>Lasaña tradicional</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Capas de pasta al dente, carne molida, salsa de tomate casera y bechamel, gratinada con queso. Un clásico italiano que combina sabor y textura en cada bocado.
+            </ion-card-content>
+            <ion-footer>
+              <ion-button expand="full" (click)="addDish({ name: 'Lasaña tradicional', price: 10 })">Comprar</ion-button>
+            </ion-footer>
+          </ion-card>
+        </ion-col>
+
+        <!-- Segunda Card -->
+        <ion-col size="12" size-md="4">
+          <ion-card>
+            <img src="./assets/images/gnocchi.jfif" alt="Gnocchis tradicionales" style="width: 100%; height: auto;">
+            <ion-card-header>
+              <ion-card-title>Gnocchis tradicionales</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Tiernos gnocchis de papa, cocidos a la perfección y servidos con una salsa de tomate y albahaca fresca. Un clásico italiano suave y reconfortante.
+
+            </ion-card-content>
+            <ion-footer>
+              <ion-button expand="full" (click)="addDish({ name: 'Gnocchis tradicionales', price: 12 })">Comprar</ion-button>
+            </ion-footer>
+          </ion-card>
+        </ion-col>
+
+        <!-- Tercera Card -->
+        <ion-col size="12" size-md="4">
+          <ion-card>
+            <img src="./assets/images/risotto2.jpg" alt="Risotto tradicional" style="width: 100%; height: auto;">
+            <ion-card-header>
+              <ion-card-title>Risotto tradicional</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              puag! eso no es comida de verdad QUE ASCO.
+            </ion-card-content>
+            <ion-footer>
+              <ion-button expand="full" (click)="addDish({ name: 'Risotto tradicional', price: 14 })">Comprar</ion-button>
+            </ion-footer>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-content>
 </ion-app>
-
-<ion-menu side="end" contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menú</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item [routerLink]="['/passreset']">
-        Restablecer Contraseña
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<ion-content>
-  <!-- Barra de búsqueda -->
-  <div style="margin: 10px;">
-    <ion-searchbar placeholder="Busque un plato"></ion-searchbar>
-  </div>
-
-  <ion-card style="margin: 20px;">
-    <h1 style="margin: 10px;">Almuerzos disponibles</h1>
-  </ion-card>
-
-  <!-- Rejilla de cartas -->
-  <ion-grid>
-    <ion-row>
-      <!-- Primera Card -->
-      <ion-col size="12" size-md="4">
-        <ion-card>
-          <img src="./assets/images/OIP.jfif" alt="Lasaña tradicional" style="width: 100%; height: auto;">
-          <ion-card-header>
-            <ion-card-title>Lasaña tradicional</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
-          </ion-card-content>
-          <ion-footer>
-            <ion-button expand="full">Comprar</ion-button>
-          </ion-footer>
-        </ion-card>
-      </ion-col>
-
-      <!-- Segunda Card -->
-      <ion-col size="12" size-md="4">
-        <ion-card>
-          <img src="./assets/images/gnocchi.jfif" alt="Lasaña tradicional" style="width: 100%; height: auto;">
-          <ion-card-header>
-            <ion-card-title>Gnocchis tradicionales</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
-          </ion-card-content>
-          <ion-footer>
-            <ion-button expand="full">Comprar</ion-button>
-          </ion-footer>
-        </ion-card>
-      </ion-col>
-
-      <!-- Tercera Card -->
-      <ion-col size="12" size-md="4">
-        <ion-card>
-          <img src="./assets/images/risotto2.jpg" alt="Lasaña tradicional" style="width: 100%; height: auto;">
-          <ion-card-header>
-            <ion-card-title>Risotto tradicional</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
-          </ion-card-content>
-          <ion-footer>
-            <ion-button expand="full">Comprar</ion-button>
-          </ion-footer>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-
-
