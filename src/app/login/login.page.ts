@@ -26,7 +26,7 @@ export class LoginPage {
 
   async onLogin() {
     const { username, password } = this.loginForm.value;
-    const storedPassword = localStorage.getItem('password') || 'contra'; // Contraseña predeterminada
+    const storedPassword = localStorage.getItem('password') || 'contra'; 
 
     localStorage.setItem('username', username);
     if (username === 'ben' && password === storedPassword) {
