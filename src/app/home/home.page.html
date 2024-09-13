@@ -1,4 +1,3 @@
-
 <ion-app>
   <ion-header>
     <ion-toolbar>
@@ -35,60 +34,59 @@
       <ion-searchbar placeholder="Busque un plato"></ion-searchbar>
     </div>
 
-    <ion-card style="margin: 20px;">
-      <h1  id="title-home" style="margin: 10px;">Almuerzos disponibles</h1>
-    </ion-card>
+    <mat-card style="margin: 20px;">
+      <h1 id="title-home" style="margin: 10px;">Almuerzos disponibles</h1>
+    </mat-card>
 
     <!-- Rejilla de cartas -->
     <ion-grid>
       <ion-row>
         <!-- Primera Card -->
         <ion-col size="12" size-md="4">
-          <ion-card>
-            <img src="./assets/images/OIP.jfif" alt="Lasaña tradicional" style="width: 100%; height: auto;">
-            <ion-card-header>
-              <ion-card-title>Lasaña tradicional</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              Capas de pasta al dente, carne molida, salsa de tomate casera y bechamel, gratinada con queso. Un clásico italiano que combina sabor y textura en cada bocado.
-            </ion-card-content>
-            <ion-footer>
-              <ion-button expand="full" (click)="addDish({ name: 'Lasaña tradicional', price: 10 })">Comprar</ion-button>
-            </ion-footer>
-          </ion-card>
+          <mat-card>
+            <img mat-card-image src="./assets/images/OIP.jfif" alt="Lasaña tradicional">
+            <mat-card-header>
+              <mat-card-title>Lasaña tradicional</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              Capas de pasta al dente, carne molida, salsa de tomate casera y bechamel, gratinada con queso.
+            </mat-card-content>
+            <mat-card-actions>
+              <ion-button mat-button (click)="addDish({ name: 'Lasaña tradicional', price: 10 })">Comprar</ion-button>
+            </mat-card-actions>
+          </mat-card>
         </ion-col>
 
         <!-- Segunda Card -->
         <ion-col size="12" size-md="4">
-          <ion-card>
-            <img src="./assets/images/gnocchi.jfif" alt="Gnocchis tradicionales" style="width: 100%; height: auto;">
-            <ion-card-header>
-              <ion-card-title>Gnocchis tradicionales</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              Tiernos gnocchis de papa, cocidos a la perfección y servidos con una salsa de tomate y albahaca fresca. Un clásico italiano suave y reconfortante.
-
-            </ion-card-content>
-            <ion-footer>
-              <ion-button expand="full" (click)="addDish({ name: 'Gnocchis tradicionales', price: 12 })">Comprar</ion-button>
-            </ion-footer>
-          </ion-card>
+          <mat-card>
+            <img mat-card-image src="./assets/images/gnocchi.jfif" alt="Gnocchis tradicionales">
+            <mat-card-header>
+              <mat-card-title>Gnocchis tradicionales</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              Tiernos gnocchis de papa, cocidos a la perfección y servidos con salsa de tomate y albahaca fresca.
+            </mat-card-content>
+            <mat-card-actions>
+              <ion-button mat-button (click)="addDish({ name: 'Gnocchis tradicionales', price: 12 })">Comprar</ion-button>
+            </mat-card-actions>
+          </mat-card>
         </ion-col>
 
         <!-- Tercera Card -->
         <ion-col size="12" size-md="4">
-          <ion-card>
-            <img src="./assets/images/risotto2.jpg" alt="Risotto tradicional" style="width: 100%; height: auto;">
-            <ion-card-header>
-              <ion-card-title>Risotto tradicional</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
+          <mat-card>
+            <img mat-card-image src="./assets/images/risotto2.jpg" alt="Risotto tradicional">
+            <mat-card-header>
+              <mat-card-title>Risotto tradicional</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
               puag! eso no es comida de verdad QUE ASCO.
-            </ion-card-content>
-            <ion-footer>
-              <ion-button expand="full" (click)="addDish({ name: 'Risotto tradicional', price: 14 })">Comprar</ion-button>
-            </ion-footer>
-          </ion-card>
+            </mat-card-content>
+            <mat-card-actions>
+              <ion-button mat-button (click)="addDish({ name: 'Risotto tradicional', price: 14 })">Comprar</ion-button>
+            </mat-card-actions>
+          </mat-card>
         </ion-col>
       </ion-row>
     </ion-grid>
