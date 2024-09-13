@@ -39,11 +39,20 @@
 }
 
 #title-home {
-  font-size: 26px;
+  font-size: 24px;
 }
 
 mat-card {
   background-color: rgb(33, 33, 33);
   color: rgba(240, 248, 255, 0.725);
   font-size: 15px;
+}
+
+mat-card {
+  margin-top: 10px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
 }
