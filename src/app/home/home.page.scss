@@ -8,6 +8,16 @@
   transform: translateY(-50%);
 }
 
+ion-content{
+  --background:
+    background-color:;
+    background-image: 
+        radial-gradient(#ffffff 0.20px, transparent 0.10px), 
+        radial-gradient(#ffffff 0.20px, #262626 0.65px); 
+    background-size: 14px 14px; 
+    background-position: 0 0, 13px 13px; 
+}
+
 #container strong {
   font-size: 20px;
   line-height: 26px;
@@ -42,8 +52,10 @@
   font-size: 24px;
 }
 
+
+
 mat-card {
-  background-color: rgb(33, 33, 33);
+  background-color: rgb(27, 27, 27);
   color: rgba(240, 248, 255, 0.725);
   font-size: 15px;
 }
