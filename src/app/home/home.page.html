@@ -50,6 +50,9 @@
             <mat-card-content>
               {{ dish.description }}
             </mat-card-content>
+            <mat-card-content>
+              ${{ dish.price }}
+            </mat-card-content>
             <mat-card-actions>
               <ion-button mat-button (click)="addDish(dish)">Comprar</ion-button>
             </mat-card-actions>
