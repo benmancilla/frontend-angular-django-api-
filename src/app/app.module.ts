@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; 
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,7 +20,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     IonicModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule, 
-    MatCardModule 
+    MatCardModule,
+    HttpClientModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],

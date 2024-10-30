@@ -1,13 +1,13 @@
-<ion-app>
+
   <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-button class="login-button" expand="full" slot="end" [routerLink]="['/login']">
-        {{ username }}
-      </ion-button>
-    </ion-toolbar>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-button class="login-button" expand="full" slot="end" [routerLink]="['/login']">
+          {{ username }}
+        </ion-button>
+      </ion-toolbar>
   </ion-header>
 
   <ion-menu side="start" contentId="main-content">
@@ -29,66 +29,33 @@
   </ion-menu>
 
   <ion-content id="main-content">
-    <!-- Barra de búsqueda -->
     <div style="margin: 10px;">
       <ion-searchbar placeholder="Busque un plato"></ion-searchbar>
     </div>
 
     <mat-card style="margin: 20px;">
-      <h1 id="title-home" style="margin: 10px; line-height: 1.4;">Bienvenido {{ username }}, estos son los almuerzos disponibles para hoy:</h1>
+      <h1 id="title-home" style="margin: 10px; line-height: 1.4;">
+        Bienvenido {{ username }}, estos son los almuerzos disponibles para hoy:
+      </h1>
     </mat-card>
 
-    <!-- Rejilla de cartas -->
     <ion-grid>
       <ion-row>
-        <!-- Primera Card -->
-        <ion-col size="12" size-md="4">
+        <ion-col size="12" size-md="4" *ngFor="let dish of dishes"> <!-- Use *ngFor to iterate -->
           <mat-card>
-            <img mat-card-image src="./assets/images/OIP.jfif" alt="Lasaña tradicional">
+            <img mat-card-image [src]="dish.image" alt="{{ dish.name }}">
             <mat-card-header>
-              <mat-card-title>Lasaña tradicional</mat-card-title>
+              <mat-card-title>{{ dish.name }}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              Capas de pasta al dente, carne molida, salsa de tomate casera y bechamel, gratinada con queso.
+              {{ dish.description }}
             </mat-card-content>
             <mat-card-actions>
-              <ion-button mat-button (click)="addDish({ name: 'Lasaña tradicional', price: 10 })">Comprar</ion-button>
-            </mat-card-actions>
-          </mat-card>
-        </ion-col>
-
-        <!-- Segunda Card -->
-        <ion-col size="12" size-md="4">
-          <mat-card>
-            <img mat-card-image src="./assets/images/gnocchi.jfif" alt="Gnocchis tradicionales">
-            <mat-card-header>
-              <mat-card-title>Gnocchis tradicionales</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              Tiernos gnocchis de papa, cocidos a la perfección y servidos con salsa de tomate y albahaca fresca.
-            </mat-card-content>
-            <mat-card-actions>
-              <ion-button mat-button (click)="addDish({ name: 'Gnocchis tradicionales', price: 12 })">Comprar</ion-button>
-            </mat-card-actions>
-          </mat-card>
-        </ion-col>
-
-        <!-- Tercera Card -->
-        <ion-col size="12" size-md="4">
-          <mat-card>
-            <img mat-card-image src="./assets/images/risotto2.jpg" alt="Risotto tradicional">
-            <mat-card-header>
-              <mat-card-title>Risotto tradicional</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              puag! eso no es comida de verdad QUE ASCO.
-            </mat-card-content>
-            <mat-card-actions>
-              <ion-button mat-button (click)="addDish({ name: 'Risotto tradicional', price: 14 })">Comprar</ion-button>
+              <ion-button mat-button (click)="addDish(dish)">Comprar</ion-button>
             </mat-card-actions>
           </mat-card>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-content>
-</ion-app>
+
