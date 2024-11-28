@@ -1,4 +1,3 @@
-<!-- login.page.html -->
 <ion-header>
   <ion-toolbar>
     <ion-title>Login</ion-title>
@@ -9,13 +8,20 @@
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <ion-item>
       <ion-label position="floating">Username</ion-label>
-      <ion-input formControlName="username"></ion-input>
+      <ion-input formControlName="username" type="text"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
+      <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
-    <ion-button expand="full" type="submit">INGRESAR</ion-button>
-    <ion-label id="pass-forgot" (click)="goToPasswordReset()">¿Olvidaste tu contraseña?</ion-label>
+
+    <ion-button expand="full" type="submit">Login</ion-button>
+    <ion-button expand="full" color="secondary" (click)="goToPasswordReset()">
+      Forgot Password?
+    </ion-button>
   </form>
+
+  <ion-button expand="full" (click)="increaseTextZoom()">Aumentar Zoom</ion-button>
+  <ion-button expand="full" (click)="resetTextZoom()">Restablecer Zoom</ion-button>
 </ion-content>
