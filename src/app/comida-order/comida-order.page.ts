@@ -39,7 +39,13 @@ export class ComidaOrderPage implements OnInit {
     });
     toast.present();
 
-    this.sendLocalNotification('Orden Confirmada', `Tu número de orden es: ${orderNumber}`); // Use LocalNotification
+    // Enviar la notificación después de 10 segundos
+    this.sendLocalNotification('Orden Confirmada', `Tu número de orden es: ${orderNumber}`);
+
+    // Programar la push notification para después de 10 segundos
+    setTimeout(() => {
+      this.sendPushNotification('Su orden está lista', '¡Puedes retirar tu orden ahora!');
+    }, 10000); // 10 segundos
 
     this.router.navigate(['/home']); 
   }
@@ -48,27 +54,51 @@ export class ComidaOrderPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  // Schedule a local notification
+  // Método para enviar una notificación local
   private async sendLocalNotification(title: string, message: string) {
     try {
-      await LocalNotifications.requestPermissions(); // Request permission to show notifications
+      await LocalNotifications.requestPermissions(); // Solicitar permisos
 
       await LocalNotifications.schedule({
         notifications: [
           {
             title: title,
             body: message,
-            id: new Date().getTime(),  // Use the current timestamp as unique ID
-            schedule: { at: new Date(Date.now() + 1000) }, // Schedule the notification to appear in 1 second
+            id: new Date().getTime(),  // Usar el timestamp como ID único
+            schedule: { at: new Date(Date.now() + 1000) }, // Programar para que aparezca en 1 segundo
             sound: 'default',
           }
         ]
       });
 
-      console.log("Notification scheduled successfully!");
+      console.log("Notificación local programada con éxito!");
 
     } catch (error) {
-      console.error("Error scheduling notification", error);
+      console.error("Error al programar la notificación local", error);
+    }
+  }
+
+  // Método para enviar la notificación push después de 10 segundos
+  private async sendPushNotification(title: string, message: string) {
+    try {
+      await LocalNotifications.requestPermissions(); // Asegurarse de que se tienen permisos
+
+      await LocalNotifications.schedule({
+        notifications: [
+          {
+            title: title,
+            body: message,
+            id: new Date().getTime(), // ID único
+            schedule: { at: new Date(Date.now() + 10000) }, // Programar para 10 segundos
+            sound: 'default',
+          }
+        ]
+      });
+
+      console.log("Notificación push programada con éxito después de 10 segundos!");
+
+    } catch (error) {
+      console.error("Error al programar la notificación push", error);
     }
   }
 }

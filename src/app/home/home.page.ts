@@ -1,29 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
-import { ItemService } from '../item.service';
-import { ToastController, AlertController } from '@ionic/angular';
-import { Item } from '../item.model';
-import { PushNotifications, PushNotificationSchema } from '@capacitor/push-notifications';
+import { ItemService } from '../item.service'; // Import ItemService
+import { ToastController } from '@ionic/angular';
+import { Item } from '../item.model'; // Import the Item interface
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit { // Implement OnInit
   username: string = '';
-  dishes: Item[] = [];
+  dishes: Item[] = []; // Change to Item array
 
   constructor(
     private orderService: OrderService,
-    private itemService: ItemService,
-    private toastController: ToastController,
-    private alertController: AlertController // Alert controller for notifications
+    private itemService: ItemService, // Inject ItemService
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
-    this.loadItems();
-    this.setupPushNotifications(); // Initialize push notifications
+    this.loadItems(); // Fetch items on initialization
   }
 
   ionViewWillEnter() {
@@ -36,11 +33,11 @@ export class HomePage implements OnInit {
 
   private loadItems() {
     this.itemService.getItems().subscribe((data) => {
-      this.dishes = data;
+      this.dishes = data; // Set fetched items to dishes
     });
   }
 
-  async addDish(dish: Item) {
+  async addDish(dish: Item) { // Change parameter to Item
     this.orderService.addDish(dish);
     const toast = await this.toastController.create({
       message: 'Plato añadido a su orden',
@@ -48,24 +45,5 @@ export class HomePage implements OnInit {
       position: 'bottom',
     });
     toast.present();
-  }
-
-  // Set up push notifications for the HomePage
-  private setupPushNotifications() {
-    // Listener for when a notification is received
-    PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
-      console.log('Push notification received on HomePage:', notification);
-      this.showNotificationAlert(notification);
-    });
-  }
-
-  // Show an alert with notification details
-  private async showNotificationAlert(notification: PushNotificationSchema) {
-    const alert = await this.alertController.create({
-      header: notification.title || 'Notificación',
-      message: notification.body || 'Has recibido una nueva notificación.',
-      buttons: ['OK'],
-    });
-    await alert.present();
   }
 }

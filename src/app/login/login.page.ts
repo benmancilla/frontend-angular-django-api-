@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Keyboard } from '@capacitor/keyboard';
+import { Keyboard } from '@capacitor/keyboard';  // Importamos el plugin del teclado
 import { TextZoom } from '@capacitor/text-zoom';
-import { PushNotifications, PushNotificationSchema } from '@capacitor/push-notifications'; // Import Push Notifications
 
 @Component({
   selector: 'app-login',
@@ -25,21 +24,16 @@ export class LoginPage {
     });
   }
 
-  // Lifecycle hook to initialize Push Notifications when the page loads
-  ionViewWillEnter() {
-    this.setupPushNotifications();
-  }
-
-  // Handle login logic
+  // Se ejecuta al hacer clic en el botón de login
   async onLogin() {
     const { username, password } = this.loginForm.value;
-    const storedPassword = localStorage.getItem('password') || 'contra';
+    const storedPassword = localStorage.getItem('password') || 'contra'; 
 
     localStorage.setItem('username', username);
-
+    
     if (username === 'ben' && password === storedPassword) {
       this.router.navigate(['/home']);
-      Keyboard.hide(); // Hide keyboard after form submission
+      Keyboard.hide();  // Ocultar el teclado después de enviar el formulario
     } else {
       const alert = await this.alertController.create({
         header: 'Error de validación',
@@ -47,56 +41,37 @@ export class LoginPage {
         buttons: ['OK']
       });
       await alert.present();
-      Keyboard.hide(); // Hide keyboard if credentials are incorrect
+      Keyboard.hide();  // Ocultar el teclado si las credenciales son incorrectas
     }
   }
 
-  // Redirect to password reset page
+  // Redirige a la página de recuperación de contraseña
   goToPasswordReset() {
     this.router.navigate(['/passreset']);
   }
 
-  // Increase text zoom
+  // Método para aumentar el tamaño del texto
   async increaseTextZoom() {
     try {
       const result = await TextZoom.get();
-      const newZoom = result.value + 0.1; // Increase zoom by 0.1
+      const newZoom = result.value + 0.1; // Aumentamos el zoom en 0.1
       await TextZoom.set({ value: newZoom });
     } catch (error) {
       console.error('Error aumentando el zoom:', error);
     }
   }
 
-  // Reset text zoom to default
+  // Método para restablecer el zoom a su valor predeterminado
   async resetTextZoom() {
     try {
-      await TextZoom.set({ value: 1 }); // Reset zoom to 100%
+      await TextZoom.set({ value: 1 }); // Establecemos el zoom a 100%
     } catch (error) {
       console.error('Error restableciendo el zoom:', error);
     }
   }
 
-  // Dismiss keyboard
+  // Método para ocultar el teclado cuando el usuario haga clic fuera del formulario
   dismissKeyboard() {
     Keyboard.hide();
-  }
-
-  // Set up push notifications specific to this page
-  private setupPushNotifications() {
-    // Listener for receiving notifications
-    PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
-      console.log('Push notification received on LoginPage:', notification);
-      this.showNotificationAlert(notification);
-    });
-  }
-
-  // Display an alert for the notification
-  private async showNotificationAlert(notification: PushNotificationSchema) {
-    const alert = await this.alertController.create({
-      header: notification.title || 'Notificación',
-      message: notification.body || 'Has recibido una nueva notificación.',
-      buttons: ['OK']
-    });
-    await alert.present();
   }
 }
